@@ -1,5 +1,7 @@
 # Automatic Work-time Tracker
 
+[![Tests](https://github.com/DavidRadu2/Automatic-Work-time-tracker/actions/workflows/tests.yml/badge.svg)](https://github.com/DavidRadu2/Automatic-Work-time-tracker/actions/workflows/tests.yml)
+
 A configurable, local-first work-time tracker. Log office or remote sessions, export a standard calendar file, and calculate when your daily work target is reached.
 
 **Defaults: 8 hours, UTC timezone, no automatic break deduction.** Change these during setup. The command-line interface is currently in Swedish.
@@ -14,7 +16,7 @@ A configurable, local-first work-time tracker. Log office or remote sessions, ex
 | Remote-work desktop question and target notification | Not implemented | Optional KDE/desktop integration |
 | Automatic local calendar refresh | Depends on your calendar app | Optional KOrganizer adapter |
 
-Native Windows/macOS execution has not yet been tested. There is no claim of automatic Wi-Fi or sleep detection there. The portable core does not require KDE or a calendar account.
+GitHub Actions runs the unit tests and isolated manual CLI checks on all three platforms. Real desktop/hardware integration still needs testing on each user's computer. There is no automatic Wi-Fi or sleep detection on Windows/macOS. The portable core does not require KDE or a calendar account.
 
 ## Setup
 
@@ -138,7 +140,7 @@ The repository ignores `.env`, databases and SQLite sidecars, calendar files, ex
 python -m unittest discover -v
 ```
 
-Tests use temporary databases and synthetic times, not real work logs. They cover migration, network interruptions, reboot recovery, remote confirmation, manual controls, net targets and breaks, timezone/daylight saving behavior, calendar output and reminder deduplication. They do not install a service, register calendars or send real notifications. Windows/macOS-native validation is still outstanding.
+Tests use temporary databases and synthetic times, not real work logs. They cover migration, network interruptions, reboot recovery, remote confirmation, manual controls, net targets and breaks, timezone/daylight saving behavior, calendar output and reminder deduplication. They do not install a service, register calendars or send real notifications. The CI matrix runs on Linux, Windows and macOS; it does not exercise a real desktop's Wi-Fi, sleep or calendar application.
 
 ## Uninstall Linux automation
 

@@ -5,6 +5,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 from locking import FileLock
 
@@ -20,7 +21,7 @@ class ManualTests(unittest.TestCase):
             output=run('report')
             self.assertIn('Avslutat',output)
             self.assertTrue((Path(directory)/'arbetstid.ics').exists())
-            with sqlite3.connect(Path(directory)/'logg.sqlite3') as c:
+            with closing(sqlite3.connect(Path(directory)/'logg.sqlite3')) as c:
                 rows=c.execute('SELECT place,end FROM passes').fetchall()
                 self.assertEqual(len(rows),1)
                 self.assertEqual(rows[0][0],'Kontor'); self.assertIsNotNone(rows[0][1])
